@@ -34,6 +34,7 @@ on awesome projects"
         android:layout_marginLeft="61dp"
         android:layout_marginRight="61dp"
         android:textColor="@color/blacktext"
+        android:textSize="@dimen/text_size_regular"
         android:fontFamily="@font/public_sans_thin"
         android:textStyle="bold"
         />
