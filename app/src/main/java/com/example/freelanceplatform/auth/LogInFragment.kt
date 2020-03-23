@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 
 import com.example.freelanceplatform.R
+import com.example.freelanceplatform.databinding.LogInFragmentBinding
 
 class LogInFragment : Fragment() {
-
+private lateinit var binding:LogInFragmentBinding
     companion object {
         fun newInstance() = LogInFragment()
     }
@@ -21,7 +23,9 @@ class LogInFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.log_in_fragment, container, false)
+        binding=DataBindingUtil.inflate(inflater,R.layout.log_in_fragment, container, false)
+
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
