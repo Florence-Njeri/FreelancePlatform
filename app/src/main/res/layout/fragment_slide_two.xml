@@ -31,6 +31,8 @@
         android:text="Make money while working
 on awesome projects"
         android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+
         android:layout_marginLeft="61dp"
         android:layout_marginRight="61dp"
         android:textColor="@color/blacktext"

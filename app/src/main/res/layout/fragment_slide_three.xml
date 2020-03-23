@@ -36,6 +36,7 @@
         android:fontFamily="@font/public_sans_thin"
         android:text="Chat with others freelancers
 and develop your network"
+        android:gravity="center_horizontal"
         android:textSize="@dimen/text_size_regular"
         android:textColor="@color/blacktext"
         android:textStyle="bold" />
