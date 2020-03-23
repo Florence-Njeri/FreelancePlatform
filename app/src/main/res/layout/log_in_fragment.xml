@@ -42,7 +42,7 @@
                 android:background="@drawable/pink_edit_text_rounded_corners"
                 android:gravity="center"
                 android:hint="Email"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:textColor="@color/editTextColor"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/password_text"
@@ -59,7 +59,7 @@
                 android:background="@drawable/pink_edit_text_rounded_corners"
                 android:gravity="center"
                 android:hint="Password"
-                android:inputType="text"
+                android:inputType="textPassword"
                 android:textColor="@color/editTextColor"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -71,6 +71,7 @@
 
 
         <Button
+            android:id="@+id/logInButton"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="263dp"
             android:layout_height="54dp"
