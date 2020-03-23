@@ -3,39 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/bubbles"
+    android:orientation="vertical"
     tools:context=".onboarding.SlideOneFragment">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="Spiice"
-        android:textSize="32dp"
-        android:textColor="@color/blacktext"
         android:fontFamily="@font/red_hat_regular"
-        android:textStyle="bold"
-        android:gravity="center_horizontal"/>
+        android:gravity="center_horizontal"
+        android:text="Spiice"
+        android:textColor="@color/blacktext"
+        android:textSize="32dp"
+        android:textStyle="bold" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:layout_gravity="center"
-        android:src="@drawable/money"/>
+        android:padding="0dp"
+        android:src="@drawable/chat" />
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="Make money while working
-on awesome projects"
-        android:layout_marginTop="16dp"
         android:layout_marginLeft="61dp"
+        android:layout_marginTop="16dp"
         android:layout_marginRight="61dp"
-        android:textColor="@color/blacktext"
         android:fontFamily="@font/public_sans_thin"
-        android:textStyle="bold"
-        />
+        android:text="Chat with others freelancers
+and develop your network"
+        android:textColor="@color/blacktext"
+        android:textStyle="bold" />
 
 </LinearLayout>
