@@ -2,5 +2,11 @@
 <resources>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorAccent">#9378FF</color>
+    <color name="mainBackgroundColor">#FAF9FE</color>
+    <color name="purpleColor">#9378FF</color>
+    <color name="pinkBackgroundColor">#FBEEFF</color>
+    <color name="greyBackground"> #EFEDF0</color>
+    <color name="blacktext"> #120E21</color>
+    <color name="white">#FFFFFF</color>
 </resources>
