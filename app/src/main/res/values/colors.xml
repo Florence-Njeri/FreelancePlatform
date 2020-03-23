@@ -9,4 +9,5 @@
     <color name="greyBackground"> #EFEDF0</color>
     <color name="blacktext"> #120E21</color>
     <color name="white">#FFFFFF</color>
+    <color name="editTextColor">#99879D</color>
 </resources>
