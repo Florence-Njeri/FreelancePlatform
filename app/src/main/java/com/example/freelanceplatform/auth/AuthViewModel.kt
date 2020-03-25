@@ -1,0 +1,68 @@
+package com.example.freelanceplatform.auth
+
+import android.text.TextUtils
+import androidx.lifecycle.ViewModel
+import com.example.freelanceplatform.repository.FreelancerRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+
+/**
+ * Will communicate with our FreelancerRepository when a user needs to log in
+ */
+public class AuthViewModel(private val repository: FreelancerRepository) : ViewModel() {
+    //email and password input
+    var email: String? = null
+    var password: String? = null
+
+    var authListener: AuthListener? = null
+
+
+    //disposable to dispose the Completable
+    private val disposables = CompositeDisposable()
+
+    //Perform login
+    fun login() {
+        //Validate email and password
+        if (isValid()) {
+            //Authentication has started
+            authListener?.onStarted()
+
+            //Therefore call the repository to perform the authentication
+            val disposable = repository.login(email!!, password!!)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    //Send success callback
+                    authListener?.onSuccess()
+                },
+                    {
+                        authListener?.onFailure(it.message!!)
+                    })
+            disposables.add(disposable)
+        } else {
+            return
+        }
+    }
+
+    fun isValid(): Boolean {
+        var isValid = true
+        if (TextUtils.isEmpty(email)) {
+            isValid = false
+            authListener?.onFailure("Invalid email")
+        }
+        if (TextUtils.isEmpty(password)) {
+            isValid = false
+            authListener?.onFailure("Invalid password")
+        }
+
+        return isValid
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        disposables.dispose()
+    }
+
+}

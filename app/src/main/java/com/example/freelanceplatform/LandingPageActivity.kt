@@ -1,6 +1,7 @@
 package com.example.freelanceplatform
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -11,11 +12,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import com.example.freelanceplatform.auth.LogInActivity
-import com.example.freelanceplatform.auth.LogInFragment
 import com.example.freelanceplatform.databinding.ActivityLandingPageBinding
 import com.example.freelanceplatform.onboarding.OnBoardingActivity
 
@@ -48,8 +45,9 @@ class LandingPageActivity : AppCompatActivity() {
             override fun updateDrawState(ds: TextPaint) {
                 super.updateDrawState(ds)
                 ds.color =
-                    ContextCompat.getColor(applicationContext,  com.example.freelanceplatform.R.color.purpleColor)
+                    ContextCompat.getColor(applicationContext,  com.example.freelanceplatform.R.color.blacktext)
                 ds.isUnderlineText = false
+                ds.typeface= Typeface.DEFAULT_BOLD
 
             }
         }

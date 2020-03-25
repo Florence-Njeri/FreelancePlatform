@@ -6,6 +6,9 @@
 
     <data>
 
+        <variable
+            name="viewmodel"
+            type="com.example.freelanceplatform.auth.AuthViewModel" />
     </data>
 
     <LinearLayout
@@ -43,6 +46,7 @@
                 android:gravity="center"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
+                android:text="@{viewmodel.email}"
                 android:textColor="@color/editTextColor"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/password_text"
@@ -60,12 +64,13 @@
                 android:gravity="center"
                 android:hint="Password"
                 android:inputType="textPassword"
+                android:text="@{viewmodel.password}"
                 android:textColor="@color/editTextColor"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/email_text"
                 app:layout_constraintTop_toBottomOf="@+id/email_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
