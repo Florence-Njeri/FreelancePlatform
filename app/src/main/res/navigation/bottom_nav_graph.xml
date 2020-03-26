@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_navigation_home_to_navigation_search"
             app:destination="@id/navigation_search" />
-        <action
-            android:id="@+id/action_navigation_home_to_feedFragment"
-            app:destination="@id/feedFragment" />
     </fragment>
 
     <fragment
@@ -42,9 +39,4 @@
         android:name="com.example.freelanceplatform.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/profile_fragment" />
-    <fragment
-        android:id="@+id/feedFragment"
-        android:name="com.example.freelanceplatform.ui.home.FeedFragment"
-        android:label="feed_fragment"
-        tools:layout="@layout/feed_fragment" />
 </navigation>
