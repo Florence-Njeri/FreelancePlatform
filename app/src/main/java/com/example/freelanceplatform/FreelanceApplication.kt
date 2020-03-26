@@ -1,7 +1,6 @@
 package com.example.freelanceplatform
 
 import android.app.Application
-import com.example.freelanceplatform.auth.AuthViewModelFactory
 import com.example.freelanceplatform.model.FirebaseSource
 import com.example.freelanceplatform.repository.FreelancerRepository
 import org.kodein.di.Kodein
@@ -18,7 +17,6 @@ class FreelanceApplication() : Application(), KodeinAware {
 
         bind() from singleton { FirebaseSource() }
         bind() from singleton { FreelancerRepository(instance()) }
-        bind() from provider { AuthViewModelFactory(instance()) }
 
     }
 }

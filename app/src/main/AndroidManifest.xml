@@ -9,19 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".auth.LogInActivity"></activity>
         <activity
-            android:name=".onboarding.OnBoardingActivity"
-            android:enabled="true"
-            android:exported="true" />
-        <activity android:name=".LandingPageActivity">
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".auth.LogInActivity" />
+        <activity
+            android:name=".onboarding.OnBoardingActivity"
+            android:enabled="true"
+            android:exported="true" />
+        <activity android:name=".LandingPageActivity">
+
+        </activity>
     </application>
 
 </manifest>

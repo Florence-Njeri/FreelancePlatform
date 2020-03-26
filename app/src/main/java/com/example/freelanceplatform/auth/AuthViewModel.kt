@@ -2,6 +2,7 @@ package com.example.freelanceplatform.auth
 
 import android.text.TextUtils
 import androidx.lifecycle.ViewModel
+import com.example.freelanceplatform.model.FirebaseSource
 import com.example.freelanceplatform.repository.FreelancerRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -11,7 +12,9 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Will communicate with our FreelancerRepository when a user needs to log in
  */
-public class AuthViewModel(private val repository: FreelancerRepository) : ViewModel() {
+class AuthViewModel() : ViewModel() {
+    private val source = FirebaseSource()
+    private val repository: FreelancerRepository = FreelancerRepository(source)
     //email and password input
     var email: String? = null
     var password: String? = null
@@ -25,7 +28,10 @@ public class AuthViewModel(private val repository: FreelancerRepository) : ViewM
     //Perform login
     fun login() {
         //Validate email and password
-        if (isValid()) {
+//        if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
+//            authListener?.onFailure("Invalid email or password")
+//            return
+//        }
             //Authentication has started
             authListener?.onStarted()
 
@@ -41,18 +47,16 @@ public class AuthViewModel(private val repository: FreelancerRepository) : ViewM
                         authListener?.onFailure(it.message!!)
                     })
             disposables.add(disposable)
-        } else {
-            return
-        }
+
     }
 
     fun isValid(): Boolean {
         var isValid = true
-        if (TextUtils.isEmpty(email)) {
+        if (email.isNullOrEmpty()) {
             isValid = false
             authListener?.onFailure("Invalid email")
         }
-        if (TextUtils.isEmpty(password)) {
+        if (password.isNullOrEmpty()) {
             isValid = false
             authListener?.onFailure("Invalid password")
         }
