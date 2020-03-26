@@ -45,7 +45,7 @@ class LandingPageActivity : AppCompatActivity() {
             override fun updateDrawState(ds: TextPaint) {
                 super.updateDrawState(ds)
                 ds.color =
-                    ContextCompat.getColor(applicationContext,  com.example.freelanceplatform.R.color.blacktext)
+                    ContextCompat.getColor(applicationContext,  com.example.freelanceplatform.R.color.blackText)
                 ds.isUnderlineText = false
                 ds.typeface= Typeface.DEFAULT_BOLD
 

@@ -14,7 +14,7 @@
         android:fontFamily="@font/red_hat_regular"
         android:gravity="center_horizontal"
         android:text="Spiice"
-        android:textColor="@color/blacktext"
+        android:textColor="@color/blackText"
         android:textSize="32dp"
         android:textStyle="bold" />
 
@@ -36,7 +36,7 @@
         android:gravity="center_horizontal"
         android:fontFamily="@font/public_sans_thin"
         android:text="Work hard and level up!"
-        android:textColor="@color/blacktext"
+        android:textColor="@color/blackText"
         android:textSize="@dimen/text_size_regular"
         android:textStyle="bold" />
 

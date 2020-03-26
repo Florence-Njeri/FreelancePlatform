@@ -14,7 +14,7 @@
         android:fontFamily="@font/red_hat_regular"
         android:gravity="center_horizontal"
         android:text="Spiice"
-        android:textColor="@color/blacktext"
+        android:textColor="@color/blackText"
         android:textSize="32dp"
         android:textStyle="bold" />
 
@@ -38,7 +38,7 @@
 and develop your network"
         android:gravity="center_horizontal"
         android:textSize="@dimen/text_size_regular"
-        android:textColor="@color/blacktext"
+        android:textColor="@color/blackText"
         android:textStyle="bold" />
 
 </LinearLayout>

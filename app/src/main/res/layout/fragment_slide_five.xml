@@ -12,7 +12,7 @@
         android:layout_weight="0.5"
         android:text="Spiice"
         android:textSize="32dp"
-        android:textColor="@color/blacktext"
+        android:textColor="@color/blackText"
         android:fontFamily="@font/red_hat_regular"
         android:textStyle="bold"
         android:gravity="center_horizontal"/>
@@ -32,7 +32,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginLeft="61dp"
         android:layout_marginRight="61dp"
-        android:textColor="@color/blacktext"
+        android:textColor="@color/blackText"
         android:textSize="@dimen/text_size_regular"
         android:fontFamily="@font/public_sans_thin"
         android:textStyle="bold"

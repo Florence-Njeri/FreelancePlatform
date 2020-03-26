@@ -34,7 +34,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
                 android:text="Sign In"
-                android:textColor="@color/blacktext"
+                android:textColor="@color/blackText"
                 android:textSize="27sp" />
 
             <EditText
