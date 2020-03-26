@@ -7,9 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.example.freelanceplatform.MainActivity
 
 import com.example.freelanceplatform.R
+import com.example.freelanceplatform.databinding.ActiveProjetsDetailsFragmentBinding
 
 class ActiveProjetsDetailsFragment : Fragment() {
 
@@ -18,12 +20,19 @@ class ActiveProjetsDetailsFragment : Fragment() {
     }
 
     private lateinit var viewModel: ActiveProjetsDetailsViewModel
+    private lateinit var binding:ActiveProjetsDetailsFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.active_projets_details_fragment, container, false)
+        binding=DataBindingUtil.inflate(inflater,R.layout.active_projets_details_fragment, container, false)
+
+        binding.dropDownProjects.setOnClickListener {
+            binding.imageViewChart.visibility=View.VISIBLE
+            binding.dropDownProjects.setImageResource(R.drawable.dropdown_icon_up)
+        }
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
