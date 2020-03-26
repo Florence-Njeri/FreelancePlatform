@@ -1,11 +1,13 @@
 package com.example.freelanceplatform.ui.home
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.freelanceplatform.MainActivity
 
 import com.example.freelanceplatform.R
 
@@ -28,6 +30,15 @@ class ActiveProjetsDetailsFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ActiveProjetsDetailsViewModel::class.java)
         // TODO: Use the ViewModel
+    }
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (activity as MainActivity).hideBottomNavigation()
+    }
+
+    override fun onDetach() {
+        (activity as MainActivity).showBottomNavigation()
+        super.onDetach()
     }
 
 }

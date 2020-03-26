@@ -1,6 +1,7 @@
 package com.example.freelanceplatform
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
@@ -28,5 +29,14 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
+    }
+    fun showBottomNavigation()
+    {
+        binding.navView.visibility = View.VISIBLE
+    }
+
+    fun hideBottomNavigation()
+    {
+        binding.navView.visibility = View.GONE
     }
 }
