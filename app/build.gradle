@@ -104,4 +104,7 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.1'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.1'
+
+    //    CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
