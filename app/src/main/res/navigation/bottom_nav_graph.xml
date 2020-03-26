@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_home_to_activeProjetsDetailsFragment"
             app:destination="@id/activeProjetsDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_projectDetailsFragment"
+            app:destination="@id/projectDetailsFragment" />
     </fragment>
 
     <fragment
@@ -54,4 +57,18 @@
             android:id="@+id/action_activeProjetsDetailsFragment_to_navigation_home2"
             app:destination="@id/navigation_home" />
     </fragment>
+    <fragment
+        android:id="@+id/projectDetailsFragment"
+        android:name="com.example.freelanceplatform.ui.home.ProjectDetailsFragment"
+        android:label="ProjectDetailsFragment"
+        tools:layout="@layout/project_details_fragment">
+        <action
+            android:id="@+id/action_projectDetailsFragment_to_sendWorkFragment"
+            app:destination="@id/sendWorkFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sendWorkFragment"
+        android:name="com.example.freelanceplatform.ui.home.SendWorkFragment"
+        android:label="send_work_fragment"
+        tools:layout="@layout/send_work_fragment" />
 </navigation>
