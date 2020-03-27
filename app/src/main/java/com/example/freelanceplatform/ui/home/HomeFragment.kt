@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.freelanceplatform.R
+import com.example.freelanceplatform.adapter.ActiveProjectsAdapter
 import com.example.freelanceplatform.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -27,6 +28,8 @@ class HomeFragment : Fragment() {
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_home, container, false)
+
+        binding.activeProjectsList.adapter=ActiveProjectsAdapter()
 //        val textView: TextView = root.findViewById(R.id.text_home)
 //        homeViewModel.text.observe(viewLifecycleOwner, Observer {
 //            textView.text = it
