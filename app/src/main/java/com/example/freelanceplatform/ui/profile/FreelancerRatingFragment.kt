@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 
 import com.example.freelanceplatform.R
+import com.example.freelanceplatform.adapter.ReviewsAdapter
+import com.example.freelanceplatform.databinding.FreelancerRatingFragmentBinding
 
 class FreelancerRatingFragment : Fragment() {
 
@@ -16,12 +19,16 @@ class FreelancerRatingFragment : Fragment() {
     }
 
     private lateinit var viewModel: FreelancerRatingViewModel
+    private lateinit var binding:FreelancerRatingFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.freelancer_rating_fragment, container, false)
+
+        binding=DataBindingUtil.inflate(inflater,R.layout.freelancer_rating_fragment, container, false)
+        binding.listReviews.adapter=ReviewsAdapter()
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
