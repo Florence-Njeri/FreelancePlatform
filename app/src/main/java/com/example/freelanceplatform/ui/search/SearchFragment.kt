@@ -19,6 +19,7 @@ private lateinit var binding:FragmentSearchBinding
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         dashboardViewModel =
             ViewModelProviders.of(this).get(SearchViewModel::class.java)

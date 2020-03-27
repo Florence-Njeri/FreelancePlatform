@@ -82,5 +82,13 @@
         <action
             android:id="@+id/action_workDetailsFragment_to_navigation_search"
             app:destination="@id/navigation_search" />
+        <action
+            android:id="@+id/action_workDetailsFragment_to_sendProposalFragment"
+            app:destination="@id/sendProposalFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/sendProposalFragment"
+        android:name="com.example.freelanceplatform.ui.search.MakeProposalFragment"
+        android:label="SendProposalFragment"
+        tools:layout="@layout/make_proposal_fragment"/>
 </navigation>
