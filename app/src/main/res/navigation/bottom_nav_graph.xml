@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_navigation_search_to_navigation_messages"
             app:destination="@id/navigation_messages" />
+        <action
+            android:id="@+id/action_navigation_search_to_workDetailsFragment"
+            app:destination="@id/workDetailsFragment" />
     </fragment>
 
     <fragment
@@ -71,4 +74,13 @@
         android:name="com.example.freelanceplatform.ui.home.SendWorkFragment"
         android:label="send_work_fragment"
         tools:layout="@layout/send_work_fragment" />
+    <fragment
+        android:id="@+id/workDetailsFragment"
+        android:name="com.example.freelanceplatform.ui.search.WorkDetailsFragment"
+        android:label="WorkDetailsFragment"
+        tools:layout="@layout/work_details_fragment">
+        <action
+            android:id="@+id/action_workDetailsFragment_to_navigation_search"
+            app:destination="@id/navigation_search" />
+    </fragment>
 </navigation>
