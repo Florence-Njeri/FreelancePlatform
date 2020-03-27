@@ -45,7 +45,7 @@ class SlideThreeFragment : Fragment() {
          * this fragment using the provided parameters.
          *
          * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
+         * @param param2 Parameter porfolio_two.
          * @return A new instance of fragment SlideThreeFragment.
          */
         // TODO: Rename and change types and number of parameters

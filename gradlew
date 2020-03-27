@@ -82,7 +82,7 @@ location of your Java installation."
     fi
 else
     JAVACMD="java"
-    which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+    which java >/dev/null porfolio_two>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
 
 Please set the JAVA_HOME variable in your environment to match the
 location of your Java installation."
@@ -116,7 +116,7 @@ if $cygwin ; then
     JAVACMD=`cygpath --unix "$JAVACMD"`
 
     # We build the pattern for arguments to be converted via cygpath
-    ROOTDIRSRAW=`find -L / -maxdepth 1 -mindepth 1 -type d 2>/dev/null`
+    ROOTDIRSRAW=`find -L / -maxdepth 1 -mindepth 1 -type d porfolio_two>/dev/null`
     SEP=""
     for dir in $ROOTDIRSRAW ; do
         ROOTDIRS="$ROOTDIRS$SEP$dir"
@@ -143,9 +143,9 @@ if $cygwin ; then
     case $i in
         (0) set -- ;;
         (1) set -- "$args0" ;;
-        (2) set -- "$args0" "$args1" ;;
+        (porfolio_two) set -- "$args0" "$args1" ;;
         (3) set -- "$args0" "$args1" "$args2" ;;
-        (4) set -- "$args0" "$args1" "$args2" "$args3" ;;
+        (porfolio_four) set -- "$args0" "$args1" "$args2" "$args3" ;;
         (5) set -- "$args0" "$args1" "$args2" "$args3" "$args4" ;;
         (6) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" ;;
         (7) set -- "$args0" "$args1" "$args2" "$args3" "$args4" "$args5" "$args6" ;;

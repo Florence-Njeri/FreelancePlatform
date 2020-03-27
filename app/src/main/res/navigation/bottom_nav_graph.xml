@@ -47,7 +47,11 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.freelanceplatform.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/profile_fragment" />
+        tools:layout="@layout/profile_fragment" >
+        <action
+            android:id="@+id/action_navigation_profile_to_freelancerRatingFragment"
+            app:destination="@id/freelancerRatingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/activeProjetsDetailsFragment"
         android:name="com.example.freelanceplatform.ui.home.ActiveProjetsDetailsFragment"
@@ -68,12 +72,19 @@
         <action
             android:id="@+id/action_projectDetailsFragment_to_sendWorkFragment"
             app:destination="@id/sendWorkFragment" />
+        <action
+            android:id="@+id/action_projectDetailsFragment_to_activeProjetsDetailsFragment"
+            app:destination="@id/activeProjetsDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/sendWorkFragment"
         android:name="com.example.freelanceplatform.ui.home.SendWorkFragment"
         android:label="send_work_fragment"
-        tools:layout="@layout/send_work_fragment" />
+        tools:layout="@layout/send_work_fragment" >
+        <action
+            android:id="@+id/action_sendWorkFragment_to_projectDetailsFragment"
+            app:destination="@id/projectDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/workDetailsFragment"
         android:name="com.example.freelanceplatform.ui.search.WorkDetailsFragment"
@@ -90,5 +101,18 @@
         android:id="@+id/sendProposalFragment"
         android:name="com.example.freelanceplatform.ui.search.MakeProposalFragment"
         android:label="SendProposalFragment"
-        tools:layout="@layout/make_proposal_fragment"/>
+        tools:layout="@layout/make_proposal_fragment">
+        <action
+            android:id="@+id/action_sendProposalFragment_to_workDetailsFragment"
+            app:destination="@id/workDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/freelancerRatingFragment"
+        android:name="com.example.freelanceplatform.ui.profile.FreelancerRatingFragment"
+        android:label="freelancer_rating_fragment"
+        tools:layout="@layout/freelancer_rating_fragment" >
+        <action
+            android:id="@+id/action_freelancerRatingFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile" />
+    </fragment>
 </navigation>
