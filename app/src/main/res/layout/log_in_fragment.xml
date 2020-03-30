@@ -72,6 +72,17 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/email_text"
                 app:layout_constraintTop_toBottomOf="@+id/email_text" />
+
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -90,13 +101,7 @@
             android:textSize="@dimen/text_size_regular"
             android:onClick="@{() -> viewmodel.loginWithGooogle()}"/>
 
-        <ProgressBar
-            android:id="@+id/progressbar"
-            android:visibility="gone"
-            android:layout_marginTop="16dp"
-            android:layout_gravity="center|center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
 
     </LinearLayout>
 </layout>

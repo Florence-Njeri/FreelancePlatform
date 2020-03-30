@@ -17,7 +17,7 @@ import com.example.freelanceplatform.R
 import com.example.freelanceplatform.databinding.SignUpFragmentBinding
 import com.google.firebase.auth.FirebaseAuth
 
-class SignUpFragment : Fragment() {
+class SignUpFragment : Fragment(), AuthListener {
     private lateinit var binding: SignUpFragmentBinding
     private lateinit var email: String
     private lateinit var pass: String
@@ -34,40 +34,12 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.sign_up_fragment, container, false)
-        auth=FirebaseAuth.getInstance()
+        auth = FirebaseAuth.getInstance()
         /**
          * TODO: Handle Sign Up Button click
          *
          */
-        binding.buttonSignUp.setOnClickListener {
-            //TODO: Validate the input fields
-            if (isInputValid()) {
-                //Google Sign In
-                auth.createUserWithEmailAndPassword(email, pass)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            Toast.makeText(
-                                context,
-                                "Registration successful!",
-                                Toast.LENGTH_LONG
-                            ).show()
-                            val intent = Intent(
-                                context,
-                                MainActivity::class.java
-                            )
-                            startActivity(intent)
-                        } else {
-                            Toast.makeText(
-                                context,
-                                "Failed to create user:\n ${task.exception?.message}",
-                                Toast.LENGTH_LONG
-                            ).show()
-                        }
-                    }
 
-
-            }
-        }
 
         return binding.root
     }
@@ -75,40 +47,28 @@ class SignUpFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(AuthViewModel::class.java)
+        binding.viewmodel = viewModel
+        viewModel.authListener = this
         // TODO: Use the ViewModel
     }
 
-    fun isInputValid(): Boolean {
-        email = binding.emailText.text.toString()
-        pass = binding.passwordText.text.toString()
-        val firstName = binding.firstName.text.toString()
-        val lastName = binding.lastName.text.toString()
-//TODO find out why isValid is always false
-        var isValid = true
-        if (TextUtils.isEmpty(email)) {
-            isValid = false
-            binding.emailText.requestFocus()
-            binding.emailText.error = "Email is required"
-        }
-        if (TextUtils.isEmpty(pass)) {
-            isValid = false
-            binding.passwordText.requestFocus()
-            binding.passwordText.error = "Password is Required"
-        }
-        if (TextUtils.isEmpty(firstName)) {
-            isValid = false
-            binding.firstName.requestFocus()
-            binding.firstName.error = "First Name is Required"
-        }
-        if (TextUtils.isEmpty(lastName)) {
-            isValid = false
-            binding.lastName.requestFocus()
-            binding.lastName.error = "Last Name is Required"
-        }
-
-
-        return isValid
+    override fun onStarted() {
+        binding.progressbar.visibility = View.VISIBLE
     }
 
+    override fun onSuccess() {
+        binding.progressbar.visibility = View.GONE
+        val intent = Intent(
+            context,
+            MainActivity::class.java
+        )
+        startActivity(intent)
+    }
+
+    override fun onFailure(message: String) {
+        binding.progressbar.visibility = View.GONE
+        Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
+
+    }
 
 }

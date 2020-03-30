@@ -5,7 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="viewmodel"
+            type="com.example.freelanceplatform.auth.AuthViewModel" />
     </data>
 
     <LinearLayout
@@ -42,6 +44,7 @@
                 android:background="@drawable/pink_edit_text_rounded_corners"
                 android:gravity="center"
                 android:hint="First Name"
+                android:text="@={viewmodel.firstName}"
                 android:inputType="text"
                 android:textColor="@color/editTextColor"
                 android:textSize="16sp"
@@ -57,6 +60,7 @@
                 android:background="@drawable/pink_edit_text_rounded_corners"
                 android:gravity="center"
                 android:hint="Last Name"
+                android:text="@={viewmodel.lastName}"
                 android:inputType="text"
                 android:textColor="@color/editTextColor"
                 android:textSize="16sp"
@@ -72,6 +76,7 @@
                 android:background="@drawable/pink_edit_text_rounded_corners"
                 android:gravity="center"
                 android:hint="Email"
+                android:text="@={viewmodel.email}"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/editTextColor"
                 android:textSize="16sp"
@@ -87,12 +92,25 @@
                 android:background="@drawable/pink_edit_text_rounded_corners"
                 android:gravity="center"
                 android:hint="Password"
+                android:text="@={viewmodel.password}"
                 android:inputType="textPassword"
                 android:textColor="@color/editTextColor"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/email_text" />
+
+            <ProgressBar
+                android:id="@+id/progressbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_vertical"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -108,7 +126,8 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:layout_marginTop="64dp"
-            android:textSize="@dimen/text_size_regular" />
+            android:textSize="@dimen/text_size_regular"
+            android:onClick="@{() -> viewmodel.signUpWithGoogle()}"/>
 
         <TextView
             android:id="@+id/textViewLogIn"

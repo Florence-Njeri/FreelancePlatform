@@ -23,6 +23,8 @@ class AuthViewModel() : ViewModel() {
     //email and password input
     var email: String? = null
     var password: String? = null
+    var firstName: String? = null
+    var lastName: String? = null
 
     var authListener: AuthListener? = null
 
@@ -61,7 +63,7 @@ class AuthViewModel() : ViewModel() {
     }
 
     fun signUpWithGoogle(){
-        if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
+        if (email.isNullOrEmpty() || password.isNullOrEmpty() || firstName.isNullOrEmpty() || lastName.isNullOrEmpty()) {
             authListener?.onFailure("Please input all values")
             return
         }
@@ -77,19 +79,6 @@ class AuthViewModel() : ViewModel() {
             })
         disposables.add(disposable)
 
-    }
-    fun isValid(): Boolean {
-        var isValid = true
-        if (email.isNullOrEmpty()) {
-            isValid = false
-            authListener?.onFailure("Invalid email")
-        }
-        if (password.isNullOrEmpty()) {
-            isValid = false
-            authListener?.onFailure("Invalid password")
-        }
-
-        return isValid
     }
 
     override fun onCleared() {
