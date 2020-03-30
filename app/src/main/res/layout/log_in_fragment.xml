@@ -99,7 +99,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_regular"
-            android:onClick="@{() -> viewmodel.loginWithGooogle()}"/>
+            android:onClick="@{() -> viewmodel.loginWithGoogle()}"/>
 
 
 

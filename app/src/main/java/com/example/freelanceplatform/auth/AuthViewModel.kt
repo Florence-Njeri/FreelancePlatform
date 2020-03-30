@@ -1,18 +1,15 @@
 package com.example.freelanceplatform.auth
 
-import android.content.Intent
-import android.text.TextUtils
-import android.view.View
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.example.freelanceplatform.MainActivity
 import com.example.freelanceplatform.model.FirebaseSource
 import com.example.freelanceplatform.model.Freelancer
 import com.example.freelanceplatform.repository.FreelancerRepository
+import com.google.firebase.firestore.auth.User
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+
 
 /**
  * Will communicate with our FreelancerRepository when a user needs to log in
@@ -28,6 +25,8 @@ class AuthViewModel() : ViewModel() {
 
     var authListener: AuthListener? = null
 
+    var freelancer=Freelancer()
+
 
     //disposable to dispose the Completable
     private val disposables = CompositeDisposable()
@@ -38,7 +37,7 @@ class AuthViewModel() : ViewModel() {
 
 
     //Perform login
-    fun loginWithGooogle() {
+    fun loginWithGoogle() {
         //Validate email and password
         if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
             authListener?.onFailure("Invalid email or password")
@@ -54,6 +53,8 @@ class AuthViewModel() : ViewModel() {
                 .subscribe({
                     //Send success callback
                     authListener?.onSuccess()
+                    freelancer.isAuthenticated=true
+
                 },
                     {
                         authListener?.onFailure(it.message!!)
@@ -74,6 +75,9 @@ class AuthViewModel() : ViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 authListener?.onSuccess()
+                repository.saveUserName(firstName!!, lastName!!)
+                freelancer.isAuthenticated=true
+                freelancer.isCreated=true
             }, {
                 authListener?.onFailure(it.message!!)
             })

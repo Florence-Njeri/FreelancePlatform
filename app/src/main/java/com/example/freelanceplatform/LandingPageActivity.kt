@@ -1,5 +1,6 @@
 package com.example.freelanceplatform
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
@@ -14,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.example.freelanceplatform.auth.LogInActivity
 import com.example.freelanceplatform.databinding.ActivityLandingPageBinding
+import com.example.freelanceplatform.model.Freelancer
 import com.example.freelanceplatform.onboarding.OnBoardingActivity
 
 
@@ -23,7 +25,8 @@ class LandingPageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,  com.example.freelanceplatform.R.layout.activity_landing_page)
-
+        val sharedPreference = getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        val isFirstTime =sharedPreference.getBoolean("isFirstTime",true)
         //Navigate to OnBoardingScreens
         binding.discoverButton.setOnClickListener {
             startActivity(Intent(this, OnBoardingActivity::class.java))
@@ -31,7 +34,11 @@ class LandingPageActivity : AppCompatActivity() {
         }
 
         setSpannableText()
-
+        val freelancer=Freelancer()
+        if(!isFirstTime){
+            //user exists
+            binding.discoverButton.visibility=View.GONE
+        }
     }
 
     private fun setSpannableText() {
@@ -57,4 +64,7 @@ class LandingPageActivity : AppCompatActivity() {
         binding.textViewLogIn.movementMethod = LinkMovementMethod.getInstance()
 
     }
+
+
+
 }

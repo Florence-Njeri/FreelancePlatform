@@ -1,12 +1,17 @@
 package com.example.freelanceplatform.model
 
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import io.reactivex.Completable
 
 class FirebaseSource {
 
     private val firebaseAuth: FirebaseAuth by lazy {
         FirebaseAuth.getInstance()
+    }
+    private val firebaseFirestore: FirebaseFirestore by lazy {
+        FirebaseFirestore.getInstance()
     }
 
 
@@ -30,6 +35,22 @@ class FirebaseSource {
                     emitter.onError(it.exception!!)
             }
         }
+    }
+
+    fun saveFreelancerCredentials(firstName: String, lastName: String){
+
+        val freelancer = HashMap<String, Any>()
+        freelancer.put("firstName", firstName)
+        freelancer.put("lastName", lastName)
+
+        firebaseFirestore.collection("FreelancerData").document(firebaseAuth.currentUser!!.uid)
+            .set(freelancer)
+            .addOnSuccessListener {
+
+            }
+            .addOnFailureListener {
+
+            }
     }
 
     fun logout() = firebaseAuth.signOut()

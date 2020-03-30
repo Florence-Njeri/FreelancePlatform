@@ -1,5 +1,6 @@
 package com.example.freelanceplatform.auth
 
+import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -15,6 +16,7 @@ import com.example.freelanceplatform.MainActivity
 
 import com.example.freelanceplatform.R
 import com.example.freelanceplatform.databinding.SignUpFragmentBinding
+import com.example.freelanceplatform.model.Freelancer
 import com.google.firebase.auth.FirebaseAuth
 
 class SignUpFragment : Fragment(), AuthListener {
@@ -28,6 +30,8 @@ class SignUpFragment : Fragment(), AuthListener {
     }
 
     private lateinit var viewModel: AuthViewModel
+    var freelancer= Freelancer()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +53,8 @@ class SignUpFragment : Fragment(), AuthListener {
         viewModel = ViewModelProviders.of(this).get(AuthViewModel::class.java)
         binding.viewmodel = viewModel
         viewModel.authListener = this
-        // TODO: Use the ViewModel
+
+
     }
 
     override fun onStarted() {
@@ -63,12 +68,27 @@ class SignUpFragment : Fragment(), AuthListener {
             MainActivity::class.java
         )
         startActivity(intent)
+        isAuthenticated()
+        isFirstTime()
     }
 
     override fun onFailure(message: String) {
         binding.progressbar.visibility = View.GONE
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
 
+    }
+    private fun isAuthenticated() {
+        val sharedPreference = context?.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        var editor = sharedPreference?.edit()
+        editor?.putBoolean("isAuthenticated", true)
+        editor?.apply()
+
+    }
+    private fun isFirstTime() {
+        val sharedPreference = context?.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        var editor = sharedPreference?.edit()
+        editor?.putBoolean("isFirstTime", false)
+        editor?.apply()
     }
 
 }
