@@ -1,8 +1,13 @@
 package com.example.freelanceplatform.auth
 
+import android.content.Intent
 import android.text.TextUtils
+import android.view.View
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.freelanceplatform.MainActivity
 import com.example.freelanceplatform.model.FirebaseSource
+import com.example.freelanceplatform.model.Freelancer
 import com.example.freelanceplatform.repository.FreelancerRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -25,13 +30,18 @@ class AuthViewModel() : ViewModel() {
     //disposable to dispose the Completable
     private val disposables = CompositeDisposable()
 
+    val user by lazy {
+        repository.currentUser()
+    }
+
+
     //Perform login
-    fun login() {
+    fun loginWithGooogle() {
         //Validate email and password
-//        if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
-//            authListener?.onFailure("Invalid email or password")
-//            return
-//        }
+        if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
+            authListener?.onFailure("Invalid email or password")
+            return
+        }
             //Authentication has started
             authListener?.onStarted()
 
@@ -50,6 +60,24 @@ class AuthViewModel() : ViewModel() {
 
     }
 
+    fun signUpWithGoogle(){
+        if (email.isNullOrEmpty() || password.isNullOrEmpty()) {
+            authListener?.onFailure("Please input all values")
+            return
+        }
+        authListener?.onStarted()
+
+        val disposable =repository.register(email!!,password!!)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                authListener?.onSuccess()
+            }, {
+                authListener?.onFailure(it.message!!)
+            })
+        disposables.add(disposable)
+
+    }
     fun isValid(): Boolean {
         var isValid = true
         if (email.isNullOrEmpty()) {

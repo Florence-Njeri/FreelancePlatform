@@ -46,7 +46,7 @@
                 android:gravity="center"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:text="@{viewmodel.email}"
+                android:text="@={viewmodel.email}"
                 android:textColor="@color/editTextColor"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/password_text"
@@ -64,7 +64,7 @@
                 android:gravity="center"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:text="@{viewmodel.password}"
+                android:text="@={viewmodel.password}"
                 android:textColor="@color/editTextColor"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -87,7 +87,16 @@
             android:text="Log-In"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_regular" />
+            android:textSize="@dimen/text_size_regular"
+            android:onClick="@{() -> viewmodel.loginWithGooogle()}"/>
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 </layout>
