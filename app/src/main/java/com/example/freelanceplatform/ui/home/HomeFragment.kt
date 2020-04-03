@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.freelanceplatform.R
 import com.example.freelanceplatform.adapter.ActiveProjectsAdapter
 import com.example.freelanceplatform.databinding.FragmentHomeBinding
+import com.example.freelanceplatform.model.ActiveProjects
 
 class HomeFragment : Fragment() {
 
@@ -27,9 +28,8 @@ class HomeFragment : Fragment() {
     ): View? {
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_home, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-        binding.activeProjectsList.adapter=ActiveProjectsAdapter()
 //        val textView: TextView = root.findViewById(R.id.text_home)
 //        homeViewModel.text.observe(viewLifecycleOwner, Observer {
 //            textView.text = it
@@ -37,6 +37,12 @@ class HomeFragment : Fragment() {
         binding.viewAllButton.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_home_to_activeProjetsDetailsFragment)
         }
+        homeViewModel.getActiveProjects()
+        homeViewModel.activeProjectsList.observe(viewLifecycleOwner, Observer {
+            binding.activeProjectsList.adapter =
+                ActiveProjectsAdapter(it as ArrayList<ActiveProjects>)
+
+        })
         return binding.root
     }
 }

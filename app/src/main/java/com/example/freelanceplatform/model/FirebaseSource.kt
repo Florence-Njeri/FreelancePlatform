@@ -3,6 +3,7 @@ package com.example.freelanceplatform.model
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import io.reactivex.Completable
 
 class FirebaseSource {
@@ -14,6 +15,33 @@ class FirebaseSource {
         FirebaseFirestore.getInstance()
     }
 
+    val activeProjects = firebaseFirestore.collection("freelancer").limit(25)
+    private val projectsList = ArrayList<ActiveProjects>()
+
+    var next: Query? = null
+
+
+    fun getActiveProjects(onSuccess: (List<ActiveProjects>) -> Unit) {
+        val nextQuery = next
+        if(nextQuery!=null){
+            nextQuery.get()
+                .addOnSuccessListener {projectsSnapshots ->
+
+                    val lastVisible = projectsSnapshots.documents[projectsSnapshots.size() -1]
+                    next =  firebaseFirestore.collection("freelancer")
+                        .startAfter(lastVisible)
+                        .limit(25)
+
+                    onSuccess(projectsSnapshots.map {
+                        val projects = it.toObject(ActiveProjects::class.java)
+//                        record.id = it.id
+                        projects
+                    })
+
+                }
+        }
+
+    }
 
     fun login(email: String, password: String) = Completable.create { emitter ->
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
@@ -37,7 +65,7 @@ class FirebaseSource {
         }
     }
 
-    fun saveFreelancerCredentials(firstName: String, lastName: String){
+    fun saveFreelancerCredentials(firstName: String, lastName: String) {
 
         val freelancer = HashMap<String, Any>()
         freelancer.put("firstName", firstName)

@@ -6,10 +6,10 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.freelanceplatform.R
-import de.hdodenhof.circleimageview.CircleImageView
+import com.example.freelanceplatform.model.ActiveProjects
 
 
-class ActiveProjectsAdapter(/*var list: ArrayList<LatestNewsEvents>*/) : RecyclerView.Adapter<ActiveProjectsAdapter.LatestEventsViewHolder>() {
+class ActiveProjectsAdapter(var list: ArrayList<ActiveProjects>) : RecyclerView.Adapter<ActiveProjectsAdapter.LatestEventsViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LatestEventsViewHolder {
@@ -19,16 +19,16 @@ class ActiveProjectsAdapter(/*var list: ArrayList<LatestNewsEvents>*/) : Recycle
 
     }
 
-    override fun getItemCount()=2
+    override fun getItemCount()=list.size
 
     override fun onBindViewHolder(holder: LatestEventsViewHolder, position: Int) {
-//        val news: LatestNewsEvents= list[position]
+        val activeProjects: ActiveProjects= list[position]
         //On click navigate
         holder.itemView.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_navigation_home_to_projectDetailsFragment)
         )
 
-        holder.bind(/*news*/)
+        holder.bind(activeProjects)
     }
 
 
@@ -45,12 +45,10 @@ class ActiveProjectsAdapter(/*var list: ArrayList<LatestNewsEvents>*/) : Recycle
 
         }
 
-        fun bind(/*news:LatestNewsEvents*/) {
-//            mNewsTitle?.text = news.title
-//            mNewsSubTitle?.text = news.subTitle
+        fun bind(activeProjects:ActiveProjects) {
 
-            mName?.text ="Florence Njeri"
-            mStatus?.text ="Active"
+            mName?.text =activeProjects.name
+            mStatus?.text =activeProjects.status
 
         }
 
