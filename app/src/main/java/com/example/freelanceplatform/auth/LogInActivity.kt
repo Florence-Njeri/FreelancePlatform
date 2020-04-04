@@ -50,10 +50,14 @@ class LogInActivity : AppCompatActivity(), AuthListener {
             )
         )
         isAuthenticated()
+        val sharedPreference = getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        var editor = sharedPreference.edit()
+        editor.putBoolean("isFirstTime", false)
+        editor.apply()
     }
 
     override fun onFailure(message: String) {
-        binding.progressbar.visibility = View.VISIBLE
+        binding.progressbar.visibility = View.GONE
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 

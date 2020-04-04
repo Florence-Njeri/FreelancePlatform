@@ -11,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.freelanceplatform.auth.LogInActivity
 import com.example.freelanceplatform.databinding.ActivityMainBinding
 import com.example.freelanceplatform.model.Freelancer
 
@@ -40,11 +41,14 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
         val sharedPreference = getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
-        val isAuthenticated =sharedPreference.getBoolean("isAuthenticated",false)
-        val isFirstTime =sharedPreference.getBoolean("isFirstTime",true)
-            if (!isAuthenticated || isFirstTime) {
-                startActivity(Intent(this, LandingPageActivity::class.java))
-            }
+        val isAuthenticated = sharedPreference.getBoolean("isAuthenticated", false)
+        val isFirstTime = sharedPreference.getBoolean("isFirstTime", true)
+        if (!isAuthenticated) {
+            startActivity(Intent(this, LogInActivity::class.java))
+        }
+        if (isFirstTime) {
+            startActivity(Intent(this, LandingPageActivity::class.java))
+        }
 
     }
 
@@ -55,6 +59,7 @@ class MainActivity : AppCompatActivity() {
     fun hideBottomNavigation() {
         binding.navView.visibility = View.GONE
     }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.nav_host_fragment)
         return navController.navigateUp()
