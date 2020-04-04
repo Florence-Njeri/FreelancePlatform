@@ -40,11 +40,12 @@ private lateinit var binding:ProjectDetailsFragmentBinding
         binding.time.text= projectProperty?.timePosted.toString()
         binding.projectTitle.text= projectProperty?.projectTitle
         binding.projectDetails.text= projectProperty?.projectDescription
-        binding.cost.text= projectProperty?.cost
+        binding.cost.text=  String.format("%s %s", "$", projectProperty?.cost)
         binding.title.text= projectProperty?.projectTitle
 
         binding.buttonSendWork.setOnClickListener {
             //navigate
+
             findNavController().navigate(R.id.action_projectDetailsFragment_to_sendWorkFragment)
         }
         return binding.root

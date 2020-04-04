@@ -77,7 +77,9 @@
             app:argType="com.example.freelanceplatform.model.ActiveProjects" />
         <action
             android:id="@+id/action_projectDetailsFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
+            app:destination="@id/navigation_home"
+            app:popUpTo="@id/navigation_home"
+            app:popUpToInclusive="true" />
 
     </fragment>
     <fragment
@@ -87,7 +89,8 @@
         tools:layout="@layout/send_work_fragment" >
         <action
             android:id="@+id/action_sendWorkFragment_to_projectDetailsFragment"
-            app:destination="@id/projectDetailsFragment" />
+            app:destination="@id/projectDetailsFragment"
+            app:popUpTo="@id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/workDetailsFragment"
