@@ -44,24 +44,28 @@ class HomeViewModel : ViewModel() {
     }
 
     fun getActiveProjects() {
+        firestoreListener?.onStarted()
         firebaseFirestore.collection("freelancer")
             .limit(25)
             .get()
             .addOnSuccessListener { result ->
-
+                firestoreListener?.onSuccess()
                 projectsList.clear()
-                        for (document in result) {
-                            val hitters = document.toObject(ActiveProjects::class.java)
-                            projectsList.addAll(listOf(hitters))
-                            _activeProjectsList.postValue(projectsList)
+                for (document in result) {
+                    val hitters = document.toObject(ActiveProjects::class.java)
+                    projectsList.addAll(listOf(hitters))
+                    _activeProjectsList.postValue(projectsList)
 
-                        }
+                }
 
+            }
+            .addOnFailureListener {
+                firestoreListener?.onFailure(it.message!!)
             }
 
     }
 
-    fun onProjectItemClicked(projects:ActiveProjects) {
+    fun onProjectItemClicked(projects: ActiveProjects) {
         _navigateToProjectDetails.value = projects
 
     }

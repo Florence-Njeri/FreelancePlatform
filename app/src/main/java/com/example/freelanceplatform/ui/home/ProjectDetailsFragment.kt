@@ -1,16 +1,21 @@
 package com.example.freelanceplatform.ui.home
 
-import androidx.lifecycle.ViewModelProviders
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-
 import com.example.freelanceplatform.R
 import com.example.freelanceplatform.databinding.ProjectDetailsFragmentBinding
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.*
+
 
 class ProjectDetailsFragment : Fragment() {
 private lateinit var binding:ProjectDetailsFragmentBinding
@@ -20,6 +25,7 @@ private lateinit var binding:ProjectDetailsFragmentBinding
 
     private lateinit var viewModel: ProjectDetailsViewModel
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,15 +41,24 @@ private lateinit var binding:ProjectDetailsFragmentBinding
          */
         val viewModelFactory = projectProperty?.let { DetailsViewModelFactory(it,application) }
         binding.viewModel = ViewModelProviders.of(this, viewModelFactory).get(ProjectDetailsViewModel::class.java)
+        //Current date
+        val current = LocalDate.now()
+
+//        val millionSeconds = projectProperty?.timePosted?.toDate() - Calendar.getInstance().timeInMillis
+
+        val timePosted: Date = SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.ENGLISH).parse(projectProperty?.timePosted?.toDate().toString())
+        val today = Date()
+        val diff = today.time - timePosted.time
+        val numOfDays = (diff / (1000 * 60 * 60 * 24)).toInt()
+
 
         binding.name.text=projectProperty?.name
-        binding.time.text= projectProperty?.timePosted.toString()
+        binding.time.text=  String.format("%s %s %s", "Posted ", numOfDays.toString(), " days ago")
         binding.projectTitle.text= projectProperty?.projectTitle
         binding.projectDetails.text= projectProperty?.projectDescription
         binding.cost.text=  String.format("%s %s", "$", projectProperty?.cost)
         binding.title.text= projectProperty?.projectTitle
-
-        binding.buttonSendWork.setOnClickListener {
+     binding.buttonSendWork.setOnClickListener {
             //navigate
 
             findNavController().navigate(R.id.action_projectDetailsFragment_to_sendWorkFragment)

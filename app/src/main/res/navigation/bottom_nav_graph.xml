@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_navigation_messages_to_navigation_profile"
             app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_navigation_messages_to_messageDetailsFragment"
+            app:destination="@id/messageDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_profile"
@@ -122,4 +125,9 @@
             android:id="@+id/action_freelancerRatingFragment_to_navigation_profile"
             app:destination="@id/navigation_profile" />
     </fragment>
+    <fragment
+        android:id="@+id/messageDetailsFragment"
+        android:name="com.example.freelanceplatform.ui.messages.MessageDetailsFragment"
+        android:label=" "
+        tools:layout="@layout/message_details_fragment" />
 </navigation>

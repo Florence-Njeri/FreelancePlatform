@@ -19,13 +19,13 @@ class MessagesAdapter(/*var list: ArrayList<LatestNewsEvents>*/) : RecyclerView.
 
     }
 
-    override fun getItemCount()=7
+    override fun getItemCount()=5
 
     override fun onBindViewHolder(holder: LatestEventsViewHolder, position: Int) {
 //        val news: LatestNewsEvents= list[position]
         //On click navigate
         holder.itemView.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_navigation_messages_to_navigation_profile)
+            Navigation.createNavigateOnClickListener(R.id.action_navigation_messages_to_messageDetailsFragment)
         )
 
         holder.bind(/*news*/)
@@ -48,9 +48,8 @@ class MessagesAdapter(/*var list: ArrayList<LatestNewsEvents>*/) : RecyclerView.
         fun bind(/*news:LatestNewsEvents*/) {
 
 
-            mName?.text ="Florence Njeri"
-            mDescription?.text ="Working with Alex is always a pleasure!\n" +
-                    "He has limitless capabilities!"
+            mName?.text ="Alex Marchal"
+            mDescription?.text ="I have some questions about the wireframes yyou sent"
 
         }
 

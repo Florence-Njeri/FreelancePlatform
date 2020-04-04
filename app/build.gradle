@@ -9,7 +9,6 @@ apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 
-
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -117,7 +116,6 @@ dependencies {
 
     // Add the Firebase Crashlytics dependency.
     implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
-
 
 
 }

@@ -21,7 +21,6 @@
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
             android:orientation="vertical"
-            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -30,12 +29,12 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="You are in charge of this project"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
                 android:fontFamily="@font/public_sans_thin"
                 android:textSize="16sp"
+                android:layout_marginTop="16dp"
                 android:textStyle="bold" />
 
             <TextView
