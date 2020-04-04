@@ -1,58 +1,81 @@
 package com.example.freelanceplatform.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.freelanceplatform.R
+import com.example.freelanceplatform.databinding.ActiveProjectsItemBinding
 import com.example.freelanceplatform.model.ActiveProjects
 
 
-class ActiveProjectsAdapter(var list: ArrayList<ActiveProjects>) : RecyclerView.Adapter<ActiveProjectsAdapter.LatestEventsViewHolder>() {
+class ActiveProjectsAdapter(val clickListener: ClickListener) :
+    ListAdapter<ActiveProjects, RecyclerView.ViewHolder>(DiffCallback) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LatestEventsViewHolder {
 
         val inflater = LayoutInflater.from(parent.context)
-        return LatestEventsViewHolder(inflater,parent)
+        return LatestEventsViewHolder(ActiveProjectsItemBinding.inflate(inflater))
 
     }
 
-    override fun getItemCount()=list.size
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when (holder) {
+            is LatestEventsViewHolder -> {
+                val activeProjects: ActiveProjects = getItem(position)
+                //On click navigate
 
-    override fun onBindViewHolder(holder: LatestEventsViewHolder, position: Int) {
-        val activeProjects: ActiveProjects= list[position]
-        //On click navigate
-        holder.itemView.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_navigation_home_to_projectDetailsFragment)
-        )
-
-        holder.bind(activeProjects)
+                holder.itemView.setOnClickListener {
+                    clickListener.onClick(activeProjects)
+                }
+                holder.bind(activeProjects, clickListener)
+            }
+        }
     }
 
 
-
-    class LatestEventsViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-        RecyclerView.ViewHolder(inflater.inflate(R.layout.active_projects_item, parent, false)) {
+    class LatestEventsViewHolder(private var binding: ActiveProjectsItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         private var mName: TextView? = null
         private var mStatus: TextView? = null
 
 
         init {
             mName = itemView.findViewById(R.id.name)
-            mStatus= itemView.findViewById(R.id.projectStatus)
+            mStatus = itemView.findViewById(R.id.projectStatus)
 
         }
 
-        fun bind(activeProjects:ActiveProjects) {
-
-            mName?.text =activeProjects.name
-            mStatus?.text =activeProjects.status
+        fun bind(activeProjects: ActiveProjects, clickListener: ClickListener) {
+            binding.activeProjectItem = activeProjects
+            binding.clickListener=clickListener
+            mName?.text = activeProjects.name
+            mStatus?.text = activeProjects.status
 
         }
 
     }
 
+    companion object DiffCallback : DiffUtil.ItemCallback<ActiveProjects>() {
+
+        override fun areItemsTheSame(oldItem: ActiveProjects, newItem: ActiveProjects): Boolean {
+            return oldItem.timePosted == newItem.timePosted
+        }
+
+        @SuppressLint("DiffUtilEquals")
+        override fun areContentsTheSame(oldItem: ActiveProjects, newItem: ActiveProjects): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+}
+
+class ClickListener(val clickListener: (projects: ActiveProjects) -> Unit) {
+    fun onClick(projects: ActiveProjects) = clickListener(projects)
 
 }

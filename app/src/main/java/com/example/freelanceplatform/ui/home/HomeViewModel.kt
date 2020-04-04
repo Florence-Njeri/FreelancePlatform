@@ -23,6 +23,12 @@ class HomeViewModel : ViewModel() {
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
     }
+
+    //LiveData for navigation
+    private val _navigateToProjectDetails = MutableLiveData<ActiveProjects>()
+    val navigateToProjectDetails: LiveData<ActiveProjects>
+        get() = _navigateToProjectDetails
+
     val text: LiveData<String> = _text
     private var projectsList = mutableListOf<ActiveProjects>()
     //RecyclerView data
@@ -54,14 +60,10 @@ class HomeViewModel : ViewModel() {
             }
 
     }
-//    fun fetchActiveProjects() {
-//        firestoreListener?.onStarted()
-//        //Therefore call the repository to perform the authentication
-//        repository.getActiveProjects {
-//            projectsList.addAll(it)
-//            _activeProjectsList.postValue(projectsList)
-//        }
-//
-//    }
+
+    fun onProjectItemClicked(projects:ActiveProjects) {
+        _navigateToProjectDetails.value = projects
+
+    }
 
 }

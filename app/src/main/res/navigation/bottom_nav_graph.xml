@@ -75,6 +75,9 @@
         <action
             android:id="@+id/action_projectDetailsFragment_to_activeProjetsDetailsFragment"
             app:destination="@id/activeProjetsDetailsFragment" />
+        <argument
+            android:name="projectDetails"
+            app:argType="com.example.freelanceplatform.model.ActiveProjects" />
     </fragment>
     <fragment
         android:id="@+id/sendWorkFragment"
