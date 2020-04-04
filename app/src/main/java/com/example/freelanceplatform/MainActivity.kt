@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.freelanceplatform.databinding.ActivityMainBinding
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_profile
             )
         )
+//        NavigationUI.setupActionBarWithNavController(this,navController)
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
         val sharedPreference = getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
@@ -51,6 +54,10 @@ class MainActivity : AppCompatActivity() {
 
     fun hideBottomNavigation() {
         binding.navView.visibility = View.GONE
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = this.findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp()
     }
 
 
