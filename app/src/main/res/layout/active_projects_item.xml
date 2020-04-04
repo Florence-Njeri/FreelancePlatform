@@ -22,7 +22,6 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         app:cardCornerRadius="8dp"
-        android:onClick="@{()->clickListener.onClick(activeProjectItem)}"
 
         >
 

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +19,7 @@ class ActiveProjectsAdapter(val clickListener: ClickListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LatestEventsViewHolder {
 
         val inflater = LayoutInflater.from(parent.context)
-        return LatestEventsViewHolder(ActiveProjectsItemBinding.inflate(inflater))
+        return LatestEventsViewHolder(inflater, parent)
 
     }
 
@@ -39,24 +38,26 @@ class ActiveProjectsAdapter(val clickListener: ClickListener) :
     }
 
 
-    class LatestEventsViewHolder(private var binding: ActiveProjectsItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class LatestEventsViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
+        RecyclerView.ViewHolder(inflater.inflate(R.layout.active_projects_item, parent, false)) {
         private var mName: TextView? = null
         private var mStatus: TextView? = null
+        private var mTitle: TextView? = null
 
 
         init {
             mName = itemView.findViewById(R.id.name)
             mStatus = itemView.findViewById(R.id.projectStatus)
+            mTitle = itemView.findViewById(R.id.projectTitle)
 
         }
 
         fun bind(activeProjects: ActiveProjects, clickListener: ClickListener) {
-            binding.activeProjectItem = activeProjects
-            binding.clickListener=clickListener
-            binding.projectTitle.text=activeProjects.projectTitle
-            binding.name.text=activeProjects.name
-            binding.projectStatus.text=activeProjects.status
+//            binding.activeProjectItem = activeProjects
+//            binding.clickListener=clickListener
+            mTitle?.text = activeProjects.projectTitle
+            mName?.text = activeProjects.name
+            mStatus?.text = activeProjects.status
 
         }
 

@@ -10,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 
 import com.example.freelanceplatform.R
-import com.example.freelanceplatform.databinding.ProfileFragmentBinding
+import com.example.freelanceplatform.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
 
@@ -19,13 +19,13 @@ class ProfileFragment : Fragment() {
     }
 
     private lateinit var viewModel: ProfileViewModel
-    private lateinit var binding:ProfileFragmentBinding
+    private lateinit var binding:FragmentProfileBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding=DataBindingUtil.inflate(inflater,R.layout.profile_fragment, container, false)
+        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_profile, container, false)
         binding.buttonViewAllRatings.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_profile_to_freelancerRatingFragment)
         }

@@ -38,7 +38,7 @@
         android:id="@+id/navigation_messages"
         android:name="com.example.freelanceplatform.ui.messages.MessagesFragment"
         android:label=" "
-        tools:layout="@layout/fragment_notifications" >
+        tools:layout="@layout/fragment_messages" >
         <action
             android:id="@+id/action_navigation_messages_to_navigation_profile"
             app:destination="@id/navigation_profile" />
@@ -47,7 +47,7 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.freelanceplatform.ui.profile.ProfileFragment"
         android:label=" "
-        tools:layout="@layout/profile_fragment" >
+        tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_navigation_profile_to_freelancerRatingFragment"
             app:destination="@id/freelancerRatingFragment" />
@@ -77,8 +77,8 @@
             app:argType="com.example.freelanceplatform.model.ActiveProjects" />
         <action
             android:id="@+id/action_projectDetailsFragment_to_navigation_home"
-            app:destination="@id/navigation_home"
-            app:popUpTo="@id/navigation_home" />
+            app:destination="@id/navigation_home" />
+
     </fragment>
     <fragment
         android:id="@+id/sendWorkFragment"
