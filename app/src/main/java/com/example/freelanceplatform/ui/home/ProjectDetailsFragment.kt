@@ -24,7 +24,25 @@ private lateinit var binding:ProjectDetailsFragmentBinding
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val application= requireNotNull(activity).application
+
         binding=DataBindingUtil.inflate(inflater,R.layout.project_details_fragment, container, false)
+
+        var projectProperty = arguments?.let { ProjectDetailsFragmentArgs.fromBundle(requireArguments()).projectDetails }
+
+        /**
+         * Get the ViewModelFactory
+         */
+        val viewModelFactory = projectProperty?.let { DetailsViewModelFactory(it,application) }
+        binding.viewModel = ViewModelProviders.of(this, viewModelFactory).get(ProjectDetailsViewModel::class.java)
+
+        binding.name.text=projectProperty?.name
+        binding.time.text= projectProperty?.timePosted.toString()
+        binding.projectTitle.text= projectProperty?.projectTitle
+        binding.projectDetails.text= projectProperty?.projectDescription
+        binding.cost.text= projectProperty?.cost
+        binding.title.text= projectProperty?.projectTitle
+
         binding.buttonSendWork.setOnClickListener {
             //navigate
             findNavController().navigate(R.id.action_projectDetailsFragment_to_sendWorkFragment)

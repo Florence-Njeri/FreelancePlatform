@@ -54,8 +54,9 @@ class ActiveProjectsAdapter(val clickListener: ClickListener) :
         fun bind(activeProjects: ActiveProjects, clickListener: ClickListener) {
             binding.activeProjectItem = activeProjects
             binding.clickListener=clickListener
-            mName?.text = activeProjects.name
-            mStatus?.text = activeProjects.status
+            binding.projectTitle.text=activeProjects.projectTitle
+            binding.name.text=activeProjects.name
+            binding.projectStatus.text=activeProjects.status
 
         }
 

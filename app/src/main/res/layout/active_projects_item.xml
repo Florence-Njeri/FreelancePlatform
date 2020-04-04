@@ -25,7 +25,6 @@
         android:onClick="@{()->clickListener.onClick(activeProjectItem)}"
         card_view:contentPadding="-4dp"
 
-
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
